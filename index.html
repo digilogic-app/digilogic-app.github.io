@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digilogic — Reproductor MP3 para macOS</title>
+    <meta
+        name="description"
+        content="Digilogic es un reproductor MP3 bonito, ligero y sin conexión para macOS."
+    >
+
+    <!-- Icono de la pestaña del navegador y de la pantalla de inicio en iOS -->
+    <link rel="icon" type="image/png" href="assets/digilogic-logo.png">
+    <link rel="apple-touch-icon" href="assets/digilogic-logo.png">
+    <meta name="theme-color" content="#0d0d10">
+
+    <!-- Vista previa al compartir el enlace (WhatsApp, Twitter, Discord...).
+         Sin esto, el enlace aparece como texto pelado, sin imagen ni
+         descripción. La URL de la imagen tiene que ser absoluta: quien
+         genera la vista previa no es el navegador del visitante. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digilogic">
+    <meta property="og:title" content="Digilogic — Reproductor MP3 para macOS">
+    <meta property="og:description" content="Un reproductor MP3 bonito, ligero y sin conexión, diseñado para macOS.">
+    <meta property="og:url" content="https://digilogic-app.github.io/">
+    <meta property="og:image" content="https://digilogic-app.github.io/assets/reproductor-preview.png">
+    <meta property="og:image:alt" content="La ventana de Digilogic reproduciendo música">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digilogic — Reproductor MP3 para macOS">
+    <meta name="twitter:description" content="Un reproductor MP3 bonito, ligero y sin conexión, diseñado para macOS.">
+    <meta name="twitter:image" content="https://digilogic-app.github.io/assets/reproductor-preview.png">
+
+    <!-- El ?v= obliga al navegador a descargar el archivo de nuevo cuando
+         cambia. Sin esto, quien ya haya visitado la web seguiría viendo
+         el diseño antiguo hasta vaciar la caché a mano. Al publicar un
+         cambio de estilos o de scripts, sube el número. -->
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-glow"></div>
+    <div class="grid"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="#" class="logo">
+            <img src="assets/digilogic-logo.png" class="logo-image" alt="Digilogic">
+            <span>Digilogic</span>
+        </a>
+
+        <nav>
+            <a href="#features">Características</a>
+            <a href="#uso">Cómo se usa</a>
+            <a href="https://github.com/danielgpf/Digilogic-Player"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub
+            </a>
+        </nav>
+    </header>
+
+
+    <!-- Hero -->
+    <main>
+
+        <section class="hero">
+
+            <div class="badge">
+                <span class="status-dot"></span>
+                Hecho para macOS
+            </div>
+
+            <h1>
+                Tu música.
+                <span>Así de simple.</span>
+            </h1>
+
+            <p class="hero-description">
+                Un reproductor MP3 bonito, ligero y sin conexión,
+                diseñado para macOS.
+            </p>
+
+            <div class="hero-buttons">
+
+                <!-- Apunta siempre a la última versión publicada en GitHub:
+                     así no hay que tocar la web al sacar una versión nueva,
+                     y GitHub lleva la cuenta de las descargas. -->
+                <a
+                    href="https://github.com/danielgpf/Digilogic-Player/releases/latest/download/Digilogic.dmg"
+                    class="button button-primary"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/>
+                    </svg>
+
+                    Descargar para Mac
+                </a>
+
+                <a
+                    href="https://github.com/danielgpf/Digilogic-Player"
+                    class="button button-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M9 19c-4.3 1.4-4.3-2.2-6-2.7M15 21v-3.9c.1-1 .5-1.7 1.2-2.1-4-.5-8.2-2-8.2-8.5a6.6 6.6 0 0 1 1.7-4.6A6.1 6.1 0 0 1 9.9.5S11.2.1 15 2.6a13.4 13.4 0 0 1 6.9 0C25.7.1 27 .5 27 .5a6.1 6.1 0 0 1 .2 5.4 6.6 6.6 0 0 1 1.7 4.6c0 6.5-4.2 8-8.2 8.5.7.4 1.2 1.2 1.2 2.4V21"/>
+                    </svg>
+
+                    Ver en GitHub
+                </a>
+
+                <a
+                    href="https://ko-fi.com/daniel_digilogic"
+                    class="button button-coffee"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <span>☕</span>
+                    Apóyame en Ko-fi
+                </a>
+
+            </div>
+
+            <p class="compatibility">
+                macOS 13 Ventura o superior · Apple Silicon
+            </p>
+
+            <!-- Aviso deliberadamente discreto y plegado: a mucha gente la
+                 app le abrirá sin problema, y un cartel grande hablando de
+                 avisos de seguridad haría desconfiar antes incluso de
+                 descargar. Plegado, solo lo abre quien se ha encontrado el
+                 problema y está buscando la solución. -->
+            <details class="primera-apertura">
+                <summary>¿macOS no te deja abrirla?</summary>
+
+                <p>
+                    Digilogic es una app independiente, así que no está
+                    firmada con una cuenta de desarrollador de Apple (son
+                    99&nbsp;€ al año). macOS avisa de ello la primera vez.
+                    Para abrirla:
+                </p>
+
+                <ol>
+                    <li>
+                        Clic derecho sobre <strong>Digilogic</strong> en la
+                        carpeta Aplicaciones y elige <strong>Abrir</strong>.
+                    </li>
+                    <li>
+                        Confirma en el aviso. Solo hace falta la primera vez.
+                    </li>
+                </ol>
+
+                <p>
+                    Si el aviso dice que la app «está dañada», ejecuta esto
+                    una vez en la Terminal:
+                </p>
+
+                <code>xattr -cr /Applications/Digilogic.app</code>
+
+                <p class="primera-apertura-nota">
+                    Puedes revisar todo el código en
+                    <a href="https://github.com/danielgpf/Digilogic-Player"
+                       target="_blank" rel="noopener noreferrer">GitHub</a>.
+                </p>
+            </details>
+
+        </section>
+
+
+        <!-- App Preview: carrusel "coverflow" de 3 capturas -->
+        <section class="preview">
+
+            <div class="carousel-stack reveal" id="carousel-stack">
+
+                <div class="carousel-card">
+                    <img src="assets/reproductor-preview.png" alt="Digilogic — captura 1" class="carousel-image">
+                </div>
+
+                <div class="carousel-card">
+                    <img src="assets/reproductor-preview-2.png" alt="Digilogic — captura 2" class="carousel-image">
+                </div>
+
+                <div class="carousel-card">
+                    <img src="assets/reproductor-preview-3.png" alt="Digilogic — captura 3" class="carousel-image">
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Features -->
+        <section id="features" class="features">
+
+            <div class="section-heading reveal">
+                <p class="eyebrow">POR QUÉ DIGILOGIC</p>
+
+                <h2>
+                    Música sin
+                    <span>ruido de más.</span>
+                </h2>
+
+                <p>
+                    Todo lo que necesitas para disfrutar tu música local.
+                    Nada que no necesites.
+                </p>
+            </div>
+
+
+            <div class="feature-grid">
+
+                <article class="feature-card reveal" style="transition-delay: 0s;">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>Rápido y ligero</h3>
+
+                    <p>
+                        Arranca al instante y no molesta.
+                        Sin procesos innecesarios en segundo plano.
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card reveal" style="transition-delay: 0.1s;">
+
+                    <div class="feature-icon">
+                        ◉
+                    </div>
+
+                    <h3>Totalmente offline</h3>
+
+                    <p>
+                        Tu música vive en tu Mac.
+                        Sin cuentas, suscripciones ni conexión a internet.
+                    </p>
+
+                </article>
+
+
+                <!-- Esta tarjeta invita a explorar el código, así que es un
+                     enlace de verdad: antes el texto lo prometía y no se
+                     podía pulsar. -->
+                <a
+                    class="feature-card feature-card-link reveal"
+                    style="transition-delay: 0.2s;"
+                    href="https://github.com/danielgpf/Digilogic-Player"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="feature-icon">
+                        &lt;/&gt;
+                    </div>
+
+                    <h3>Código abierto</h3>
+
+                    <p>
+                        Digilogic se construye en abierto.
+                        Explora el código, reporta fallos o contribuye.
+                    </p>
+
+                    <span class="feature-link-cta">Ver el código en GitHub →</span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Cómo se usa: las dos interacciones principales de Digilogic no
+             se ven a simple vista (el título es un botón, y la nota también),
+             así que sin explicarlas aquí hay gente que abriría la app sin
+             saber por dónde empezar. -->
+        <section id="uso" class="uso">
+
+            <div class="section-heading reveal">
+                <p class="eyebrow">CÓMO SE USA</p>
+
+                <h2>
+                    Dos clics y
+                    <span>a sonar.</span>
+                </h2>
+            </div>
+
+            <div class="uso-grid">
+
+                <div class="uso-pasos reveal">
+
+                    <article class="uso-paso">
+                        <span class="uso-numero">1</span>
+                        <div>
+                            <h3>Elige tu carpeta</h3>
+                            <p>
+                                Pulsa sobre el título, donde pone
+                                «Selecciona una carpeta», e indica dónde
+                                tienes tus MP3. Puede ser incluso un USB:
+                                Digilogic los reproduce desde ahí, sin
+                                copiar ni importar nada.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="uso-paso">
+                        <span class="uso-numero">2</span>
+                        <div>
+                            <h3>Busca entre tu música</h3>
+                            <p>
+                                El botón de las tres líneas abre tu lista
+                                completa, con un buscador arriba que filtra
+                                mientras escribes.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="uso-paso">
+                        <span class="uso-numero">3</span>
+                        <div>
+                            <h3>Pulsa la nota para el modo miniatura</h3>
+                            <p>
+                                La ventana se encoge y se coloca en una
+                                esquina de la pantalla, para dejarla de
+                                fondo mientras trabajas. Vuelve a pulsarla
+                                para recuperar el tamaño normal.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- Demostración animada del modo miniatura: un puntero
+                     entra, pulsa la nota musical y el reproductor se
+                     transforma en la barra compacta. La orquesta script.js;
+                     si el visitante tiene activado "reducir movimiento",
+                     el CSS deja las dos imágenes quietas y visibles. -->
+                <figure class="uso-demo reveal" id="demo-miniatura">
+
+                    <div class="demo-marco">
+
+                        <img
+                            class="demo-img demo-img-completo"
+                            src="assets/reproductor-preview.png"
+                            alt="Digilogic a tamaño completo, mostrando la nota musical animada"
+                            loading="lazy"
+                        >
+
+                        <img
+                            class="demo-img demo-img-mini"
+                            src="assets/modo-compacto.png"
+                            alt="Digilogic en modo miniatura: una barra horizontal con la portada, el título y los controles"
+                            loading="lazy"
+                        >
+
+                        <!-- Anillo que se expande en el punto del clic -->
+                        <span class="demo-pulso" aria-hidden="true"></span>
+
+                        <!-- Puntero del ratón -->
+                        <!-- Puntero con la silueta del de macOS: flecha
+                             estrecha con cola, negra y con contorno blanco
+                             (el contorno es lo que la hace visible sobre
+                             fondos oscuros como este). -->
+                        <span class="demo-cursor" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 1.6 L4 18.7 L8.3 14.6 L11.2 21.4 L13.9 20.1 L11 13.5 L16.7 13.5 Z"/>
+                            </svg>
+                        </span>
+
+                    </div>
+
+                    <figcaption>Un clic en la nota y se encoge. Otro, y vuelve.</figcaption>
+
+                </figure>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+        <section class="cta">
+
+            <div class="cta-content reveal">
+
+                <span class="cta-icon">☕</span>
+
+                <h2>
+                    ¿Te está gustando Digilogic?
+                </h2>
+
+                <p>
+                    Si el proyecto te resulta útil, puedes apoyar
+                    su desarrollo con un café.
+                </p>
+
+                <a
+                    href="https://ko-fi.com/daniel_digilogic"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button button-primary"
+                >
+                    ☕ Apóyame en Ko-fi
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="logo">
+                <img src="assets/digilogic-logo.png" class="logo-image" alt="Digilogic">
+                <span>Digilogic</span>
+            </div>
+
+            <p>
+                Hecho con ♥ en España
+            </p>
+
+            <p>
+                © <span id="year"></span> Digilogic
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js?v=3"></script>
+
+</body>
+</html>
