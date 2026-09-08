@@ -1,0 +1,1351 @@
+:root {
+    --background: #08090b;
+    --surface: #111317;
+    --surface-light: #181b20;
+
+    --text: #f5f5f7;
+    --muted: #9297a3;
+
+    --accent: #4f8cff;
+    --accent-light: #72a5ff;
+
+    --border: rgba(255, 255, 255, 0.08);
+
+    --radius: 18px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    background: var(--background);
+    color: var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Inter",
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.background-glow {
+    position: fixed;
+
+    width: 700px;
+    height: 700px;
+
+    top: -300px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(79, 140, 255, 0.18),
+            transparent 65%
+        );
+
+    pointer-events: none;
+    z-index: -2;
+}
+
+
+.grid {
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 60px 60px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 70%
+        );
+
+    pointer-events: none;
+    z-index: -1;
+}
+
+
+/* NAVBAR */
+
+.navbar {
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 22px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+
+.logo-mark {
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #6e7787
+    );
+
+    color: #090a0c;
+
+    font-weight: 800;
+}
+
+
+.navbar nav {
+    display: flex;
+    gap: 28px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+.navbar nav a {
+    transition: color .2s ease;
+}
+
+
+.navbar nav a:hover {
+    color: white;
+}
+
+
+/* HERO */
+
+.hero {
+    max-width: 900px;
+
+    margin: 36px auto 0;
+
+    padding: 0 25px;
+
+    text-align: center;
+}
+
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 7px 13px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.03);
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    animation: fadeUp .8s ease both;
+}
+
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #5ee58a;
+
+    box-shadow:
+        0 0 12px rgba(94,229,138,.7);
+}
+
+
+.hero h1 {
+    margin-top: 22px;
+
+    font-size: clamp(46px, 7vw, 82px);
+
+    line-height: .95;
+
+    letter-spacing: -0.06em;
+
+    font-weight: 700;
+
+    animation: fadeUp .8s .1s ease both;
+}
+
+
+.hero h1 span {
+    display: block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #729cff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+.hero-description {
+    max-width: 570px;
+
+    margin: 22px auto 0;
+
+    color: var(--muted);
+
+    font-size: 19px;
+
+    line-height: 1.6;
+
+    animation: fadeUp .8s .2s ease both;
+}
+
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 26px;
+
+    animation: fadeUp .8s .3s ease both;
+}
+
+
+.button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    min-height: 48px;
+
+    padding: 0 20px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    border: 1px solid var(--border);
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+
+.button svg {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+.button-primary {
+    background: white;
+    color: #08090b;
+
+    border-color: white;
+}
+
+
+.button-primary:hover {
+    background: #e9edf5;
+}
+
+
+.button-secondary {
+    background: rgba(255,255,255,.04);
+}
+
+
+.button-secondary:hover {
+    background: rgba(255,255,255,.08);
+}
+
+
+.button-coffee {
+    background: rgba(255, 190, 70, .06);
+
+    border-color: rgba(255, 190, 70, .15);
+}
+
+
+.button-coffee:hover {
+    background: rgba(255, 190, 70, .1);
+}
+
+
+.compatibility {
+    margin-top: 18px;
+
+    color: #676c77;
+
+    font-size: 12px;
+
+    animation: fadeUp .8s .4s ease both;
+}
+
+
+/* PREVIEW */
+
+.preview {
+    max-width: 1050px;
+
+    margin: 100px auto 0;
+
+    padding: 0 25px;
+}
+
+
+.carousel-stack {
+    position: relative;
+
+    width: 100%;
+    max-width: 640px;
+
+    /* Alto fijo pensado para que la tarjeta central (340px de ancho,
+       misma proporción 300/388 que la ventana real de la app) quepa
+       entera; ver también los ajustes responsive más abajo. */
+    height: 440px;
+
+    margin: 0 auto;
+
+    /* Difumina el propio contenedor hacia el fondo de la página en los
+       bordes, en vez de recortar en seco -> las capturas laterales
+       "se funden" con la web en vez de tener un borde duro. */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+
+    overflow: hidden;
+
+    perspective: 1400px;
+}
+
+
+.carousel-card {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transition:
+        transform .55s cubic-bezier(.22, .9, .3, 1),
+        filter .5s ease;
+}
+
+
+.carousel-image {
+    display: block;
+
+    width: min(340px, 86vw);
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 40px 100px rgba(0,0,0,.55),
+        0 0 100px rgba(79,140,255,.07);
+
+    transform-style: preserve-3d;
+
+    transition: transform .1s ease-out;
+
+    will-change: transform;
+}
+
+
+/* Posición 0 = centro, a tamaño completo y nítida.
+   Posición 1 = a la derecha, más pequeña y difuminada.
+   Posición 2 = a la izquierda, igual que la derecha pero al otro lado.
+   El clic reordena qué tarjeta lleva cada clase (ver script.js). */
+
+.carousel-pos-0 {
+    z-index: 3;
+
+    transform: translate(-50%, -50%) scale(1);
+
+    filter: blur(0) brightness(1);
+
+    cursor: default;
+}
+
+
+.carousel-pos-1 {
+    z-index: 2;
+
+    transform: translate(calc(-50% + 195px), -50%) scale(0.78);
+
+    filter: blur(4px) brightness(0.6);
+
+    cursor: pointer;
+}
+
+
+.carousel-pos-2 {
+    z-index: 2;
+
+    transform: translate(calc(-50% - 195px), -50%) scale(0.78);
+
+    filter: blur(4px) brightness(0.6);
+
+    cursor: pointer;
+}
+
+
+.carousel-pos-1:hover,
+.carousel-pos-2:hover {
+    filter: blur(3px) brightness(0.75);
+}
+
+
+.eyebrow {
+    color: #686e7a;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .14em;
+}
+
+
+/* FEATURES */
+
+.features {
+    max-width: 1050px;
+
+    margin: 180px auto 0;
+
+    padding: 0 25px;
+}
+
+
+.section-heading {
+    max-width: 600px;
+
+    margin-bottom: 55px;
+}
+
+
+.section-heading h2 {
+    margin-top: 15px;
+
+    font-size: clamp(42px, 6vw, 65px);
+
+    line-height: 1;
+
+    letter-spacing: -.06em;
+}
+
+
+.section-heading h2 span {
+    color: #666b75;
+}
+
+
+.section-heading > p:last-child {
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 17px;
+
+    line-height: 1.6;
+}
+
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+
+.feature-card {
+    padding: 30px;
+
+    min-height: 240px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.01)
+        );
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease;
+}
+
+
+.feature-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(255,255,255,.15);
+}
+
+
+.feature-icon {
+    width: 43px;
+    height: 43px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 25px;
+
+    border-radius: 11px;
+
+    background: rgba(255,255,255,.06);
+
+    font-size: 17px;
+}
+
+
+.feature-card h3 {
+    font-size: 17px;
+}
+
+
+.feature-card p {
+    margin-top: 12px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* CTA */
+
+.cta {
+    max-width: 1050px;
+
+    margin: 180px auto;
+
+    padding: 0 25px;
+}
+
+
+.cta-content {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 80px 30px;
+
+    text-align: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(79,140,255,.13),
+            transparent 60%
+        ),
+        rgba(255,255,255,.02);
+}
+
+
+.cta-icon {
+    font-size: 35px;
+}
+
+
+.cta h2 {
+    margin-top: 20px;
+
+    font-size: 45px;
+
+    letter-spacing: -.05em;
+}
+
+
+.cta p {
+    max-width: 480px;
+
+    margin: 15px auto 30px;
+
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+}
+
+
+.footer-content {
+    max-width: 1050px;
+
+    margin: auto;
+
+    padding: 30px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    color: #666b75;
+
+    font-size: 12px;
+}
+
+
+/* ANIMATION */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* Animación al hacer scroll: el elemento arranca invisible y algo
+   desplazado hacia abajo; en cuanto entra en pantalla, JS (script.js)
+   le añade la clase "reveal-visible" y aquí es donde ocurre la transición. */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(28px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+
+.reveal.reveal-visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 20px;
+    }
+
+
+    .navbar nav {
+        display: none;
+    }
+
+
+    .hero {
+        margin-top: 40px;
+    }
+
+
+    .hero h1 {
+        font-size: 70px;
+    }
+
+
+    .hero-description {
+        font-size: 17px;
+    }
+
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+
+    .button {
+        width: 100%;
+    }
+
+
+    .carousel-stack {
+        height: 340px;
+    }
+
+
+    .carousel-image {
+        width: min(260px, 78vw);
+    }
+
+
+    .carousel-pos-1 {
+        transform: translate(calc(-50% + 130px), -50%) scale(0.75);
+    }
+
+
+    .carousel-pos-2 {
+        transform: translate(calc(-50% - 130px), -50%) scale(0.75);
+    }
+
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .features {
+        margin-top: 120px;
+    }
+
+
+    .cta {
+        margin: 120px auto;
+    }
+
+
+    .cta h2 {
+        font-size: 36px;
+    }
+
+
+    .footer-content {
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .hero h1 {
+        font-size: 58px;
+    }
+
+
+    .carousel-stack {
+        height: 290px;
+    }
+
+
+    .carousel-image {
+        width: min(220px, 74vw);
+    }
+
+
+    .carousel-pos-1 {
+        transform: translate(calc(-50% + 95px), -50%) scale(0.72);
+    }
+
+
+    .carousel-pos-2 {
+        transform: translate(calc(-50% - 95px), -50%) scale(0.72);
+    }
+
+}
+.logo-image {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* ------------------------------------------------------------------
+   Aviso de primera apertura (Gatekeeper)
+
+   Plegado por defecto y con el mismo peso visual que la línea de
+   compatibilidad que tiene encima: es una ayuda para quien la necesite,
+   no un cartel de advertencia. Si destacara, haría dudar de la app antes
+   incluso de descargarla.
+   ------------------------------------------------------------------ */
+
+.primera-apertura {
+    max-width: 460px;
+
+    margin: 14px auto 0;
+
+    text-align: left;
+
+    font-size: 12.5px;
+
+    color: var(--muted);
+}
+
+
+.primera-apertura summary {
+    color: #676c77;
+
+    font-size: 12px;
+    text-align: center;
+
+    cursor: pointer;
+
+    list-style: none;
+
+    transition: color .2s ease;
+}
+
+
+.primera-apertura summary::-webkit-details-marker {
+    display: none;
+}
+
+
+.primera-apertura summary::after {
+    content: " ›";
+
+    display: inline-block;
+
+    transition: transform .2s ease;
+}
+
+
+.primera-apertura[open] summary::after {
+    transform: rotate(90deg);
+}
+
+
+.primera-apertura summary:hover {
+    color: var(--text);
+}
+
+
+.primera-apertura > *:not(summary) {
+    animation: fadeUp .35s ease both;
+}
+
+
+.primera-apertura p {
+    margin-top: 14px;
+
+    line-height: 1.65;
+}
+
+
+.primera-apertura ol {
+    margin: 12px 0 0 18px;
+
+    line-height: 1.7;
+}
+
+
+.primera-apertura code {
+    display: block;
+
+    margin-top: 10px;
+    padding: 10px 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    background: rgba(255,255,255,.04);
+
+    color: var(--text);
+
+    font-family: "SF Mono", ui-monospace, Menlo, monospace;
+    font-size: 11.5px;
+
+    overflow-x: auto;
+
+    user-select: all;
+}
+
+
+.primera-apertura-nota {
+    color: #676c77;
+
+    font-size: 11.5px;
+}
+
+
+.primera-apertura a {
+    color: var(--accent-light);
+    text-decoration: none;
+}
+
+
+.primera-apertura a:hover {
+    text-decoration: underline;
+}
+
+
+/* ------------------------------------------------------------------
+   Sección "Cómo se usa"
+   ------------------------------------------------------------------ */
+
+.uso {
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 100px 24px 40px;
+}
+
+
+.uso-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+
+    align-items: center;
+
+    margin-top: 55px;
+}
+
+
+.uso-pasos {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+
+.uso-paso {
+    display: flex;
+    gap: 18px;
+
+    align-items: flex-start;
+}
+
+
+.uso-numero {
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(79, 140, 255, .16);
+    border: 1px solid rgba(79, 140, 255, .35);
+
+    color: var(--accent-light);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.uso-paso h3 {
+    font-size: 16px;
+}
+
+
+.uso-paso p {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* Demostración animada del modo miniatura.
+
+   Las dos capturas se apilan en el mismo hueco y se turnan; el marco fija
+   la altura para que al cambiar de una a otra la página no dé un salto
+   (la completa es vertical y la miniatura apaisada, así que sin esto el
+   contenido de abajo bailaría en cada ciclo).
+
+   Sin sombra a propósito: las capturas ya vienen recortadas al borde de
+   la ventana, y añadir uno propio hacía que pareciera que la captura
+   estaba mal hecha. */
+
+.uso-demo {
+    text-align: center;
+}
+
+
+.demo-marco {
+    position: relative;
+
+    width: 100%;
+    height: 420px;
+
+    display: grid;
+    place-items: center;
+}
+
+
+.demo-img {
+    position: absolute;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    width: auto;
+    height: auto;
+
+    transition:
+        opacity .45s ease,
+        transform .45s cubic-bezier(.22, 1, .36, 1);
+}
+
+
+.demo-img-completo {
+    max-height: 420px;
+}
+
+
+.demo-img-mini {
+    max-width: 400px;
+}
+
+
+/* Estado por defecto: se ve la completa y la miniatura espera fuera,
+   algo encogida, para que al aparecer dé sensación de "desplegarse". */
+
+.demo-img-mini {
+    opacity: 0;
+    transform: scale(.9);
+}
+
+
+.uso-demo.demo-en-mini .demo-img-completo {
+    opacity: 0;
+    transform: scale(.92);
+}
+
+
+.uso-demo.demo-en-mini .demo-img-mini {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* Puntero del ratón. Se coloca con left/top en porcentaje del marco, así
+   sigue apuntando al mismo sitio de la captura aunque cambie de tamaño. */
+
+.demo-cursor {
+    position: absolute;
+    left: 50%;
+    top: 95%;
+
+    width: 26px;
+    height: 26px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.6));
+
+    transition:
+        left 1s cubic-bezier(.4, 0, .2, 1),
+        top 1s cubic-bezier(.4, 0, .2, 1),
+        opacity .35s ease,
+        transform .12s ease;
+}
+
+
+.demo-cursor svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+.demo-cursor path {
+    /* Negro con contorno blanco, como el puntero real de macOS. El
+       contorno no es decorativo: sin él, una flecha negra sobre una
+       captura oscura sería invisible. */
+    fill: #000000;
+
+    stroke: #ffffff;
+    stroke-width: 1.6;
+    stroke-linejoin: round;
+}
+
+
+.uso-demo.demo-cursor-visible .demo-cursor {
+    opacity: 1;
+}
+
+
+.uso-demo.demo-pulsando .demo-cursor {
+    transform: scale(.82);
+}
+
+
+/* Anillo que se expande en el punto del clic */
+
+.demo-pulso {
+    position: absolute;
+
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+    border: 2px solid var(--accent-light);
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.uso-demo.demo-pulsando .demo-pulso {
+    animation: demoPulso .6s ease-out;
+}
+
+
+@keyframes demoPulso {
+    from {
+        opacity: .9;
+        transform: scale(.4);
+    }
+    to {
+        opacity: 0;
+        transform: scale(4.2);
+    }
+}
+
+
+.uso-demo figcaption {
+    margin-top: 18px;
+
+    color: #676c77;
+
+    font-size: 12.5px;
+}
+
+
+/* Si el visitante pide reducir el movimiento, se muestran las dos
+   capturas quietas, una al lado de la otra, y el puntero desaparece. */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .demo-marco {
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+    }
+
+    .demo-img {
+        position: static;
+
+        opacity: 1 !important;
+        transform: none !important;
+
+        transition: none;
+    }
+
+    .demo-cursor,
+    .demo-pulso {
+        display: none;
+    }
+
+}
+
+
+/* La tarjeta de "Código abierto" es un enlace: hay que quitarle el
+   subrayado y el color azul que el navegador pone por defecto. */
+
+.feature-card-link {
+    display: block;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.feature-link-cta {
+    display: inline-block;
+
+    margin-top: 16px;
+
+    color: var(--accent-light);
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: transform .2s ease;
+}
+
+
+.feature-card-link:hover .feature-link-cta {
+    transform: translateX(3px);
+}
+
+
+/* Mismo punto de corte que el resto de la web (800px), para que todo
+   cambie a la vez y no queden estados intermedios raros. */
+
+@media (max-width: 800px) {
+
+    .uso {
+        padding-top: 70px;
+    }
+
+
+    .uso-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+
+    /* En vertical la demostración va primero: se entiende mejor viendo
+       la transformación antes de leer los pasos. */
+    .uso-demo {
+        order: -1;
+    }
+
+
+    /* El marco baja de alto: 420px en una pantalla de móvil se comen
+       media pantalla y obligan a hacer scroll para ver los tres pasos. */
+    .demo-marco {
+        height: 330px;
+    }
+
+
+    .demo-img-completo {
+        max-height: 330px;
+    }
+
+
+    .demo-cursor {
+        width: 22px;
+        height: 22px;
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .demo-marco {
+        height: 270px;
+    }
+
+
+    .demo-img-completo {
+        max-height: 270px;
+    }
+
+
+    .uso-paso p {
+        font-size: 13.5px;
+    }
+
+}
