@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Digilogic — Reproductor MP3 para macOS</title>
+    <!-- Corto a propósito: en la pestaña del navegador solo caben unos
+         30 caracteres antes de que se recorte con puntos suspensivos, y
+         lo que tiene que sobrevivir a ese recorte es el nombre. -->
+    <title>Digilogic — Reproductor minimalista</title>
     <meta
         name="description"
-        content="Digilogic es un reproductor MP3 bonito, ligero y sin conexión para macOS."
+        content="Digilogic es un reproductor MP3 minimalista, ligero y sin conexión para tu ordenador. Gratis y de código abierto."
     >
 
     <!-- Icono de la pestaña del navegador y de la pantalla de inicio en iOS -->
@@ -21,22 +24,22 @@
          genera la vista previa no es el navegador del visitante. -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Digilogic">
-    <meta property="og:title" content="Digilogic — Reproductor MP3 para macOS">
-    <meta property="og:description" content="Un reproductor MP3 bonito, ligero y sin conexión, diseñado para macOS.">
+    <meta property="og:title" content="Digilogic — Reproductor MP3 minimalista">
+    <meta property="og:description" content="Un reproductor MP3 minimalista, ligero y sin conexión para tu ordenador. Gratis y de código abierto.">
     <meta property="og:url" content="https://digilogic-app.github.io/">
     <meta property="og:image" content="https://digilogic-app.github.io/assets/reproductor-preview.png">
     <meta property="og:image:alt" content="La ventana de Digilogic reproduciendo música">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Digilogic — Reproductor MP3 para macOS">
-    <meta name="twitter:description" content="Un reproductor MP3 bonito, ligero y sin conexión, diseñado para macOS.">
+    <meta name="twitter:title" content="Digilogic — Reproductor MP3 minimalista">
+    <meta name="twitter:description" content="Un reproductor MP3 minimalista, ligero y sin conexión para tu ordenador. Gratis y de código abierto.">
     <meta name="twitter:image" content="https://digilogic-app.github.io/assets/reproductor-preview.png">
 
     <!-- El ?v= obliga al navegador a descargar el archivo de nuevo cuando
          cambia. Sin esto, quien ya haya visitado la web seguiría viendo
          el diseño antiguo hasta vaciar la caché a mano. Al publicar un
          cambio de estilos o de scripts, sube el número. -->
-    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -69,9 +72,13 @@
 
         <section class="hero">
 
+            <!-- El eslogan ya no nombra ningún sistema: son los botones de
+                 descarga los que dicen para qué sistema es cada versión.
+                 Así el texto no hay que reescribirlo cada vez que Digilogic
+                 llega a una plataforma nueva. -->
             <div class="badge">
                 <span class="status-dot"></span>
-                Hecho para macOS
+                Gratis y de código abierto
             </div>
 
             <h1>
@@ -80,25 +87,84 @@
             </h1>
 
             <p class="hero-description">
-                Un reproductor MP3 bonito, ligero y sin conexión,
-                diseñado para macOS.
+                Un reproductor MP3 minimalista, ligero y sin conexión
+                para tu escritorio.
             </p>
 
+            <!-- Las dos descargas, cada una con su letra pequeña de
+                 requisitos justo debajo. Van en su propia fila para que
+                 pesen lo mismo visualmente; GitHub y Ko-fi quedan en una
+                 segunda fila, más discreta. -->
+            <div class="hero-descargas">
+
+                <div class="descarga">
+
+                    <!-- Apunta siempre a la última versión publicada en
+                         GitHub: así no hay que tocar la web al sacar una
+                         versión nueva, y GitHub lleva la cuenta de las
+                         descargas. -->
+                    <a
+                        href="https://github.com/danielgpf/Digilogic-Player/releases/latest/download/Digilogic.dmg"
+                        class="button button-primary"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/>
+                        </svg>
+
+                        Descargar para Mac
+                    </a>
+
+                    <p class="descarga-nota">
+                        macOS 13 Ventura o superior · Apple Silicon
+                    </p>
+
+                </div>
+
+                <!-- ==========================================================
+                     WINDOWS: PENDIENTE DE COMPILAR
+                     ==========================================================
+                     El botón ya está aquí, visible pero desactivado, para
+                     anunciar que la versión llega sin llevar a una descarga
+                     que hoy daría un 404.
+
+                     Para activarlo cuando el ejecutable esté subido a la
+                     release de GitHub:
+
+                       1. Quita de este enlace la clase "button-proximamente",
+                          el aria-disabled y el tabindex.
+                       2. Borra el <span class="button-etiqueta">Pronto</span>.
+                       3. En la nota de abajo, sustituye "Disponible muy
+                          pronto" por la versión mínima de Windows real.
+                       4. Comprueba que el asset de la release se llama
+                          exactamente Digilogic.exe, como dice el href.
+                       5. Sube el ?v= de style.css y script.js.
+                     ========================================================== -->
+                <div class="descarga">
+
+                    <a
+                        href="https://github.com/danielgpf/Digilogic-Player/releases/latest/download/Digilogic.exe"
+                        class="button button-secondary button-proximamente"
+                        aria-disabled="true"
+                        tabindex="-1"
+                    >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/>
+                        </svg>
+
+                        Descargar para Windows
+
+                        <span class="button-etiqueta">Pronto</span>
+                    </a>
+
+                    <p class="descarga-nota">
+                        Disponible muy pronto
+                    </p>
+
+                </div>
+
+            </div>
+
             <div class="hero-buttons">
-
-                <!-- Apunta siempre a la última versión publicada en GitHub:
-                     así no hay que tocar la web al sacar una versión nueva,
-                     y GitHub lleva la cuenta de las descargas. -->
-                <a
-                    href="https://github.com/danielgpf/Digilogic-Player/releases/latest/download/Digilogic.dmg"
-                    class="button button-primary"
-                >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/>
-                    </svg>
-
-                    Descargar para Mac
-                </a>
 
                 <a
                     href="https://github.com/danielgpf/Digilogic-Player"
@@ -125,24 +191,24 @@
 
             </div>
 
-            <p class="compatibility">
-                macOS 13 Ventura o superior · Apple Silicon
-            </p>
-
             <!-- Aviso deliberadamente discreto y plegado: a mucha gente la
                  app le abrirá sin problema, y un cartel grande hablando de
                  avisos de seguridad haría desconfiar antes incluso de
                  descargar. Plegado, solo lo abre quien se ha encontrado el
                  problema y está buscando la solución. -->
             <details class="primera-apertura">
-                <summary>¿macOS no te deja abrirla?</summary>
+                <summary>¿Tu sistema no te deja abrirla?</summary>
 
                 <p>
                     Digilogic es una app independiente, así que no está
-                    firmada con una cuenta de desarrollador de Apple (son
-                    99&nbsp;€ al año). macOS avisa de ello la primera vez.
-                    Para abrirla:
+                    firmada: la firma de Apple cuesta 99&nbsp;€ al año y la
+                    de Microsoft ronda los 200&nbsp;€. Sin ella, los dos
+                    sistemas avisan la primera vez. No significa que haya
+                    nada malo en la app, solo que no han pagado por
+                    identificarla.
                 </p>
+
+                <h4>En macOS</h4>
 
                 <ol>
                     <li>
@@ -160,6 +226,26 @@
                 </p>
 
                 <code>xattr -cr /Applications/Digilogic.app</code>
+
+                <h4>En Windows</h4>
+
+                <p>
+                    Aparece una pantalla azul que dice
+                    <strong>«Windows protegió tu PC»</strong>. Es
+                    SmartScreen, y el botón para continuar viene escondido:
+                </p>
+
+                <ol>
+                    <li>
+                        Pulsa <strong>Más información</strong>, el enlace
+                        pequeño bajo el mensaje.
+                    </li>
+                    <li>
+                        Aparece el botón
+                        <strong>Ejecutar de todas formas</strong>. Púlsalo.
+                        Solo hace falta la primera vez.
+                    </li>
+                </ol>
 
                 <p class="primera-apertura-nota">
                     Puedes revisar todo el código en
@@ -207,7 +293,7 @@
 
                 <p>
                     Todo lo que necesitas para disfrutar tu música local.
-                    Nada que no necesites.
+                    Sin suscripciones ni ataduras.
                 </p>
             </div>
 
@@ -239,7 +325,7 @@
                     <h3>Totalmente offline</h3>
 
                     <p>
-                        Tu música vive en tu Mac.
+                        Tu música vive en tu ordenador.
                         Sin cuentas, suscripciones ni conexión a internet.
                     </p>
 
@@ -440,7 +526,7 @@
     </footer>
 
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=4"></script>
 
 </body>
 </html>

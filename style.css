@@ -260,6 +260,34 @@ a {
 }
 
 
+/* Fila de las descargas: un bloque por sistema, con el botón y su letra
+   pequeña de requisitos debajo. Alineados por arriba (no estirados) para
+   que los dos botones queden a la misma altura aunque una nota ocupe dos
+   líneas y la otra una. */
+.hero-descargas {
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    gap: 12px 16px;
+
+    margin-top: 30px;
+
+    animation: fadeUp .8s .3s ease both;
+}
+
+
+.descarga {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 9px;
+}
+
+
 .hero-buttons {
     display: flex;
 
@@ -270,7 +298,7 @@ a {
 
     margin-top: 26px;
 
-    animation: fadeUp .8s .3s ease both;
+    animation: fadeUp .8s .4s ease both;
 }
 
 
@@ -357,14 +385,44 @@ a {
 }
 
 
-.compatibility {
-    margin-top: 18px;
+/* Botón de una plataforma que todavía no se puede descargar: se ve, pero
+   no lleva a ningún sitio. Apagado en vez de oculto porque anunciar que
+   la versión está en camino es justamente lo que queremos; el
+   'pointer-events: none' evita el 404 y el aria-disabled del HTML hace
+   que los lectores de pantalla lo anuncien como desactivado. */
+.button-proximamente {
+    opacity: .45;
 
+    cursor: default;
+
+    pointer-events: none;
+}
+
+
+.button-etiqueta {
+    padding: 3px 8px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,.1);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: .02em;
+
+    text-transform: uppercase;
+}
+
+
+/* Letra pequeña bajo cada botón de descarga: requisitos del sistema. */
+.descarga-nota {
     color: #676c77;
 
     font-size: 12px;
 
-    animation: fadeUp .8s .4s ease both;
+    text-align: center;
 }
 
 
@@ -775,8 +833,16 @@ footer {
     }
 
 
-    .hero-buttons {
+    .hero-buttons,
+    .hero-descargas {
         flex-direction: column;
+    }
+
+
+    /* En columna, cada bloque de descarga ocupa el ancho completo para
+       que su botón mida lo mismo que los demás. */
+    .descarga {
+        align-self: stretch;
     }
 
 
@@ -936,6 +1002,25 @@ footer {
     margin-top: 14px;
 
     line-height: 1.65;
+}
+
+
+/* Separador entre las instrucciones de un sistema y las del otro. */
+.primera-apertura h4 {
+    margin-top: 18px;
+    padding-top: 14px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: .04em;
+
+    text-transform: uppercase;
 }
 
 
