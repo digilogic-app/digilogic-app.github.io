@@ -1,1 +1,9 @@
 .DS_Store
+
+# Los scripts de los reels viven en el repositorio privado
+# (ReproductorMP3/reels): son material de marca, no de la web.
+reel*.py
+capturar_reel.py
+cuadros/
+*.mp4
+__pycache__/
