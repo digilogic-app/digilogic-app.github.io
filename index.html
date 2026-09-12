@@ -39,7 +39,7 @@
          cambia. Sin esto, quien ya haya visitado la web seguiría viendo
          el diseño antiguo hasta vaciar la caché a mano. Al publicar un
          cambio de estilos o de scripts, sube el número. -->
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
@@ -58,6 +58,7 @@
         <nav>
             <a href="#features">Características</a>
             <a href="#uso">Cómo se usa</a>
+            <a href="#opinion">Tu opinión</a>
             <a href="https://github.com/danielgpf/Digilogic-Player"
                target="_blank"
                rel="noopener noreferrer">
@@ -453,6 +454,99 @@
         </section>
 
 
+        <!-- Feedback: tres puertas de entrada, cada una a su sitio en
+             GitHub (plantilla de fallo, plantilla de idea, Discussions).
+             Reutiliza las tarjetas de "Por qué Digilogic" para no
+             inventar otro componente. -->
+        <section id="opinion" class="features opinion">
+
+            <div class="section-heading reveal">
+                <p class="eyebrow">TU OPINIÓN</p>
+
+                <h2>
+                    Cuéntame qué
+                    <span>cambiarías.</span>
+                </h2>
+
+                <p>
+                    Digilogic se hace escuchando a quien lo usa. Todo se
+                    lee, y lo que entra se anuncia en las notas de cada
+                    versión con el nombre de quien lo propuso.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+
+                <a
+                    class="feature-card feature-card-link reveal"
+                    style="transition-delay: 0s;"
+                    href="https://github.com/danielgpf/Digilogic-Player/issues/new?template=fallo.yml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <div class="feature-icon">
+                        ✕
+                    </div>
+
+                    <h3>Algo no funciona</h3>
+
+                    <p>
+                        Cuéntame qué pasa y en qué sistema. Cuanto más
+                        concreto, antes se arregla.
+                    </p>
+
+                    <span class="feature-link-cta">Reportar un fallo →</span>
+                </a>
+
+
+                <a
+                    class="feature-card feature-card-link reveal"
+                    style="transition-delay: 0.1s;"
+                    href="https://github.com/danielgpf/Digilogic-Player/issues/new?template=idea.yml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <div class="feature-icon">
+                        ✦
+                    </div>
+
+                    <h3>Te falta algo</h3>
+
+                    <p>
+                        Una función, un ajuste, un detalle. Explica qué
+                        problema te resolvería.
+                    </p>
+
+                    <span class="feature-link-cta">Proponer una idea →</span>
+                </a>
+
+
+                <a
+                    class="feature-card feature-card-link reveal"
+                    style="transition-delay: 0.2s;"
+                    href="https://github.com/danielgpf/Digilogic-Player/discussions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <div class="feature-icon">
+                        ♪
+                    </div>
+
+                    <h3>Solo quieres hablar</h3>
+
+                    <p>
+                        Dudas, opiniones o contar cómo lo usas. Sin
+                        formularios.
+                    </p>
+
+                    <span class="feature-link-cta">Abrir una conversación →</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
         <!-- CTA -->
         <section class="cta">
 
@@ -465,9 +559,44 @@
                 </h2>
 
                 <p>
-                    Si el proyecto te resulta útil, puedes apoyar
-                    su desarrollo con un café.
+                    Digilogic es gratis y de código abierto, y lo seguirá
+                    siendo. Si te resulta útil, puedes apoyarlo con un
+                    café. Lo recaudado va, por este orden, a:
                 </p>
+
+                <!-- Objetivos con su coste real: pedir dinero "para el
+                     proyecto" funciona peor que decir exactamente qué
+                     desbloquea cada cantidad. -->
+                <ol class="objetivos">
+                    <li>
+                        <span class="objetivo-coste">19 $</span>
+                        <span class="objetivo-texto">
+                            <strong>Microsoft Store</strong>
+                            Instalar en Windows sin el aviso de SmartScreen.
+                        </span>
+                    </li>
+                    <li>
+                        <span class="objetivo-coste">10 $/mes</span>
+                        <span class="objetivo-texto">
+                            <strong>Firma en Windows</strong>
+                            Que el .exe descargado abra sin avisos.
+                        </span>
+                    </li>
+                    <li>
+                        <span class="objetivo-coste">99 $/año</span>
+                        <span class="objetivo-texto">
+                            <strong>Apple Developer</strong>
+                            Mac sin avisos y, más adelante, versión para iPhone.
+                        </span>
+                    </li>
+                    <li>
+                        <span class="objetivo-coste">25 $</span>
+                        <span class="objetivo-texto">
+                            <strong>Google Play</strong>
+                            Versión para Android.
+                        </span>
+                    </li>
+                </ol>
 
                 <a
                     href="https://ko-fi.com/daniel_digilogic"
