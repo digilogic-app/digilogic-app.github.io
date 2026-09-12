@@ -724,6 +724,66 @@ a {
 }
 
 
+/* Objetivos de financiación dentro del CTA: una lista corta con el coste
+   a la izquierda, alineado en columna, y qué desbloquea a la derecha. */
+.objetivos {
+    max-width: 480px;
+
+    margin: 0 auto 34px;
+
+    padding: 0;
+
+    list-style: none;
+
+    text-align: left;
+}
+
+
+.objetivos li {
+    display: flex;
+
+    gap: 16px;
+
+    padding: 12px 0;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.objetivos li:last-child {
+    border-bottom: 1px solid var(--border);
+}
+
+
+.objetivo-coste {
+    flex: 0 0 74px;
+
+    color: var(--accent-light);
+
+    font-weight: 700;
+
+    font-variant-numeric: tabular-nums;
+}
+
+
+.objetivo-texto {
+    color: var(--muted);
+}
+
+
+.objetivo-texto strong {
+    display: block;
+
+    color: #e9edf5;
+
+    font-weight: 600;
+}
+
+
 /* FOOTER */
 
 footer {
