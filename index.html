@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<!-- El HTML se escribe en INGLÉS a propósito, y es JavaScript quien lo
+     pasa a español si el navegador lo está. Al revés no funcionaría:
+     los buscadores indexan lo que viene en el HTML, así que escribirlo
+     en español dejaría a Digilogic fuera de las búsquedas en inglés,
+     que son la inmensa mayoría de "minimal mp3 player macos" y
+     similares. Los textos en español están en textos.js. -->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +13,10 @@
     <!-- Corto a propósito: en la pestaña del navegador solo caben unos
          30 caracteres antes de que se recorte con puntos suspensivos, y
          lo que tiene que sobrevivir a ese recorte es el nombre. -->
-    <title>Digilogic — Reproductor minimalista</title>
+    <title>Digilogic — Minimal MP3 player</title>
     <meta
         name="description"
-        content="Digilogic es un reproductor MP3 minimalista, ligero y sin conexión para tu ordenador. Gratis y de código abierto."
+        content="Digilogic is a minimal, lightweight, offline MP3 player for your computer. Free and open source."
     >
 
     <!-- Icono de la pestaña del navegador y de la pantalla de inicio en iOS -->
@@ -21,25 +27,29 @@
     <!-- Vista previa al compartir el enlace (WhatsApp, Twitter, Discord...).
          Sin esto, el enlace aparece como texto pelado, sin imagen ni
          descripción. La URL de la imagen tiene que ser absoluta: quien
-         genera la vista previa no es el navegador del visitante. -->
+         genera la vista previa no es el navegador del visitante.
+
+         Se quedan en inglés siempre: quien las lee es un robot, no el
+         visitante, y son las que deciden cómo se ve el enlace al
+         compartirlo por ahí. -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Digilogic">
-    <meta property="og:title" content="Digilogic — Reproductor MP3 minimalista">
-    <meta property="og:description" content="Un reproductor MP3 minimalista, ligero y sin conexión para tu ordenador. Gratis y de código abierto.">
+    <meta property="og:title" content="Digilogic — Minimal MP3 player">
+    <meta property="og:description" content="A minimal, lightweight, offline MP3 player for your computer. Free and open source.">
     <meta property="og:url" content="https://digilogic-app.github.io/">
     <meta property="og:image" content="https://digilogic-app.github.io/assets/reproductor-preview.png">
-    <meta property="og:image:alt" content="La ventana de Digilogic reproduciendo música">
+    <meta property="og:image:alt" content="The Digilogic window playing music">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Digilogic — Reproductor MP3 minimalista">
-    <meta name="twitter:description" content="Un reproductor MP3 minimalista, ligero y sin conexión para tu ordenador. Gratis y de código abierto.">
+    <meta name="twitter:title" content="Digilogic — Minimal MP3 player">
+    <meta name="twitter:description" content="A minimal, lightweight, offline MP3 player for your computer. Free and open source.">
     <meta name="twitter:image" content="https://digilogic-app.github.io/assets/reproductor-preview.png">
 
     <!-- El ?v= obliga al navegador a descargar el archivo de nuevo cuando
          cambia. Sin esto, quien ya haya visitado la web seguiría viendo
          el diseño antiguo hasta vaciar la caché a mano. Al publicar un
          cambio de estilos o de scripts, sube el número. -->
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 
 <body>
@@ -56,17 +66,18 @@
         </a>
 
         <nav>
-            <a href="#features">Características</a>
-            <a href="#uso">Cómo se usa</a>
-            <a href="#opinion">Tu opinión</a>
+            <a href="#features" data-t="nav.caracteristicas">Features</a>
+            <a href="#uso" data-t="nav.uso">How it works</a>
+            <a href="#opinion" data-t="nav.opinion">Feedback</a>
 
             <!-- Apunta a /releases, no a /releases/latest: así se ve el
                  histórico entero y no solo lo último, que es lo que
                  interesa a quien ya tiene la app instalada. -->
             <a href="https://github.com/danielgpf/Digilogic-Player/releases"
                target="_blank"
-               rel="noopener noreferrer">
-                Novedades
+               rel="noopener noreferrer"
+               data-t="nav.novedades">
+                What's new
             </a>
 
             <a href="https://github.com/danielgpf/Digilogic-Player"
@@ -74,6 +85,20 @@
                rel="noopener noreferrer">
                 GitHub
             </a>
+
+            <!-- Interruptor de idioma. No compite con la detección
+                 automática: es su red de seguridad, para quien tiene el
+                 navegador en un idioma que no es el que quiere leer. -->
+            <span class="idiomas" role="group" aria-label="Language">
+                <!-- Globo en vez de banderas: una bandera es un país, no
+                     un idioma, y además Windows no dibuja los emoji de
+                     bandera (los convierte en las dos letras del código).
+                     El globo sí se ve igual en todos los sistemas. -->
+                <span class="idiomas-globo" aria-hidden="true">🌐</span>
+                <button type="button" data-idioma="en">EN</button>
+                <span aria-hidden="true">·</span>
+                <button type="button" data-idioma="es">ES</button>
+            </span>
         </nav>
     </header>
 
@@ -89,17 +114,16 @@
                  llega a una plataforma nueva. -->
             <div class="badge">
                 <span class="status-dot"></span>
-                Gratis y de código abierto
+                <span data-t="hero.badge">Free and open source</span>
             </div>
 
-            <h1>
-                Tu música.
-                <span>Así de simple.</span>
+            <h1 data-t-html="hero.titulo">
+                Your music.
+                <span>Just that.</span>
             </h1>
 
-            <p class="hero-description">
-                Un reproductor MP3 minimalista, ligero y sin conexión
-                para tu escritorio.
+            <p class="hero-description" data-t="hero.descripcion">
+                A minimal, lightweight, offline MP3 player for your desktop.
             </p>
 
             <!-- Las dos descargas, cada una con su letra pequeña de
@@ -122,11 +146,11 @@
                             <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/>
                         </svg>
 
-                        Descargar para Mac
+                        <span data-t="hero.descargar_mac">Download for Mac</span>
                     </a>
 
-                    <p class="descarga-nota">
-                        macOS 13 Ventura o superior · Apple Silicon
+                    <p class="descarga-nota" data-t="hero.nota_mac">
+                        macOS 13 Ventura or later · Apple Silicon
                     </p>
 
                 </div>
@@ -146,11 +170,11 @@
                             <path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/>
                         </svg>
 
-                        Descargar para Windows
+                        <span data-t="hero.descargar_windows">Download for Windows</span>
                     </a>
 
-                    <p class="descarga-nota">
-                        Windows 10 u 11 · 64 bits
+                    <p class="descarga-nota" data-t="hero.nota_windows">
+                        Windows 10 or 11 · 64-bit
                     </p>
 
                 </div>
@@ -169,7 +193,7 @@
                         <path d="M9 19c-4.3 1.4-4.3-2.2-6-2.7M15 21v-3.9c.1-1 .5-1.7 1.2-2.1-4-.5-8.2-2-8.2-8.5a6.6 6.6 0 0 1 1.7-4.6A6.1 6.1 0 0 1 9.9.5S11.2.1 15 2.6a13.4 13.4 0 0 1 6.9 0C25.7.1 27 .5 27 .5a6.1 6.1 0 0 1 .2 5.4 6.6 6.6 0 0 1 1.7 4.6c0 6.5-4.2 8-8.2 8.5.7.4 1.2 1.2 1.2 2.4V21"/>
                     </svg>
 
-                    Ver en GitHub
+                    <span data-t="hero.github">View on GitHub</span>
                 </a>
 
                 <a
@@ -179,7 +203,7 @@
                     rel="noopener noreferrer"
                 >
                     <span>☕</span>
-                    Apóyame en Ko-fi
+                    <span data-t="hero.kofi">Support me on Ko-fi</span>
                 </a>
 
             </div>
@@ -190,58 +214,56 @@
                  descargar. Plegado, solo lo abre quien se ha encontrado el
                  problema y está buscando la solución. -->
             <details class="primera-apertura">
-                <summary>¿Tu sistema no te deja abrirla?</summary>
+                <summary data-t="aviso.resumen">Your system won't let you open it?</summary>
 
-                <p>
-                    Digilogic es una app independiente, así que no está
-                    firmada: la firma de Apple cuesta 99&nbsp;€ al año y la
-                    de Microsoft ronda los 200&nbsp;€. Sin ella, los dos
-                    sistemas avisan la primera vez. No significa que haya
-                    nada malo en la app, solo que no han pagado por
-                    identificarla.
+                <p data-t="aviso.parrafo">
+                    Digilogic is an independent app, so it isn't code-signed:
+                    an Apple signature costs €99 a year and a Microsoft one is
+                    around €200. Without it, both systems warn you the first
+                    time. It doesn't mean there's anything wrong with the app,
+                    only that nobody has paid to have it identified.
                 </p>
 
-                <h4>En macOS</h4>
+                <h4 data-t="aviso.macos">On macOS</h4>
 
                 <ol>
-                    <li>
-                        Clic derecho sobre <strong>Digilogic</strong> en la
-                        carpeta Aplicaciones y elige <strong>Abrir</strong>.
+                    <li data-t-html="aviso.mac_1">
+                        Right-click <strong>Digilogic</strong> in your
+                        Applications folder and choose <strong>Open</strong>.
                     </li>
-                    <li>
-                        Confirma en el aviso. Solo hace falta la primera vez.
+                    <li data-t="aviso.mac_2">
+                        Confirm in the dialog. Only needed the first time.
                     </li>
                 </ol>
 
-                <p>
-                    Si el aviso dice que la app «está dañada», ejecuta esto
-                    una vez en la Terminal:
+                <p data-t="aviso.danada">
+                    If the warning says the app "is damaged", run this once in
+                    Terminal:
                 </p>
 
                 <code>xattr -cr /Applications/Digilogic.app</code>
 
-                <h4>En Windows</h4>
+                <h4 data-t="aviso.windows">On Windows</h4>
 
-                <p>
-                    Aparece una pantalla azul que dice
-                    <strong>«Windows protegió tu PC»</strong>. Es
-                    SmartScreen, y el botón para continuar viene escondido:
+                <p data-t-html="aviso.windows_p">
+                    A blue screen appears saying
+                    <strong>"Windows protected your PC"</strong>. That's
+                    SmartScreen, and the button to continue is hidden:
                 </p>
 
                 <ol>
-                    <li>
-                        Pulsa <strong>Más información</strong>, el enlace
-                        pequeño bajo el mensaje.
+                    <li data-t-html="aviso.win_1">
+                        Click <strong>More info</strong>, the small link under
+                        the message.
                     </li>
-                    <li>
-                        Aparece el botón
-                        <strong>Ejecutar de todas formas</strong>. Púlsalo.
-                        Solo hace falta la primera vez.
+                    <li data-t-html="aviso.win_2">
+                        The <strong>Run anyway</strong> button appears. Click
+                        it. Only needed the first time.
                     </li>
                 </ol>
 
-                <p class="primera-apertura-nota">
-                    Puedes revisar todo el código en
+                <p class="primera-apertura-nota" data-t-html="aviso.nota">
+                    You can read all the code on
                     <a href="https://github.com/danielgpf/Digilogic-Player"
                        target="_blank" rel="noopener noreferrer">GitHub</a>.
                 </p>
@@ -256,15 +278,15 @@
             <div class="carousel-stack reveal" id="carousel-stack">
 
                 <div class="carousel-card">
-                    <img src="assets/reproductor-preview.png" alt="Digilogic — captura 1" class="carousel-image">
+                    <img src="assets/reproductor-preview.png" alt="Digilogic — screenshot 1" class="carousel-image">
                 </div>
 
                 <div class="carousel-card">
-                    <img src="assets/reproductor-preview-2.png" alt="Digilogic — captura 2" class="carousel-image">
+                    <img src="assets/reproductor-preview-2.png" alt="Digilogic — screenshot 2" class="carousel-image">
                 </div>
 
                 <div class="carousel-card">
-                    <img src="assets/reproductor-preview-3.png" alt="Digilogic — captura 3" class="carousel-image">
+                    <img src="assets/reproductor-preview-3.png" alt="Digilogic — screenshot 3" class="carousel-image">
                 </div>
 
             </div>
@@ -277,16 +299,16 @@
         <section id="features" class="features">
 
             <div class="section-heading reveal">
-                <p class="eyebrow">POR QUÉ DIGILOGIC</p>
+                <p class="eyebrow" data-t="features.eyebrow">WHY DIGILOGIC</p>
 
-                <h2>
-                    Música sin
-                    <span>ruido de más.</span>
+                <h2 data-t-html="features.titulo">
+                    Music without
+                    <span>the noise.</span>
                 </h2>
 
-                <p>
-                    Todo lo que necesitas para disfrutar tu música local.
-                    Sin suscripciones ni ataduras.
+                <p data-t="features.sub">
+                    Everything you need to enjoy your local music.
+                    No subscriptions, no strings attached.
                 </p>
             </div>
 
@@ -299,11 +321,11 @@
                         ⚡
                     </div>
 
-                    <h3>Rápido y ligero</h3>
+                    <h3 data-t="features.c1_titulo">Fast and light</h3>
 
-                    <p>
-                        Arranca al instante y no molesta.
-                        Sin procesos innecesarios en segundo plano.
+                    <p data-t="features.c1_texto">
+                        Starts instantly and stays out of the way.
+                        No unnecessary background processes.
                     </p>
 
                 </article>
@@ -315,11 +337,11 @@
                         ◉
                     </div>
 
-                    <h3>Totalmente offline</h3>
+                    <h3 data-t="features.c2_titulo">Completely offline</h3>
 
-                    <p>
-                        Tu música vive en tu ordenador.
-                        Sin cuentas, suscripciones ni conexión a internet.
+                    <p data-t="features.c2_texto">
+                        Your music lives on your computer.
+                        No accounts, no subscriptions, no internet.
                     </p>
 
                 </article>
@@ -340,14 +362,14 @@
                         &lt;/&gt;
                     </div>
 
-                    <h3>Código abierto</h3>
+                    <h3 data-t="features.c3_titulo">Open source</h3>
 
-                    <p>
-                        Digilogic se construye en abierto.
-                        Explora el código, reporta fallos o contribuye.
+                    <p data-t="features.c3_texto">
+                        Digilogic is built in the open.
+                        Read the code, report bugs or contribute.
                     </p>
 
-                    <span class="feature-link-cta">Ver el código en GitHub →</span>
+                    <span class="feature-link-cta" data-t="features.c3_cta">See the code on GitHub →</span>
 
                 </a>
 
@@ -363,11 +385,11 @@
         <section id="uso" class="uso">
 
             <div class="section-heading reveal">
-                <p class="eyebrow">CÓMO SE USA</p>
+                <p class="eyebrow" data-t="uso.eyebrow">HOW IT WORKS</p>
 
-                <h2>
-                    Dos clics y
-                    <span>a sonar.</span>
+                <h2 data-t-html="uso.titulo">
+                    Two clicks and
+                    <span>it plays.</span>
                 </h2>
             </div>
 
@@ -378,13 +400,13 @@
                     <article class="uso-paso">
                         <span class="uso-numero">1</span>
                         <div>
-                            <h3>Elige tu carpeta</h3>
-                            <p>
-                                Pulsa sobre el título, donde pone
-                                «Selecciona una carpeta», e indica dónde
-                                tienes tus MP3. Puede ser incluso un USB:
-                                Digilogic los reproduce desde ahí, sin
-                                copiar ni importar nada.
+                            <h3 data-t="uso.paso1_t">Pick your folder</h3>
+                            <p data-t="uso.paso1_p">
+                                Click the title, where it says "Choose a
+                                folder", and point it at your MP3s. It can
+                                even be a USB drive: Digilogic plays them
+                                from there, without copying or importing
+                                anything.
                             </p>
                         </div>
                     </article>
@@ -392,11 +414,11 @@
                     <article class="uso-paso">
                         <span class="uso-numero">2</span>
                         <div>
-                            <h3>Busca entre tu música</h3>
-                            <p>
-                                El botón de las tres líneas abre tu lista
-                                completa, con un buscador arriba que filtra
-                                mientras escribes.
+                            <h3 data-t="uso.paso2_t">Search your music</h3>
+                            <p data-t="uso.paso2_p">
+                                The three-line button opens your full list,
+                                with a search box at the top that filters as
+                                you type.
                             </p>
                         </div>
                     </article>
@@ -404,12 +426,12 @@
                     <article class="uso-paso">
                         <span class="uso-numero">3</span>
                         <div>
-                            <h3>Pulsa la nota para el modo miniatura</h3>
-                            <p>
-                                La ventana se encoge y se coloca en una
-                                esquina de la pantalla, para dejarla de
-                                fondo mientras trabajas. Vuelve a pulsarla
-                                para recuperar el tamaño normal.
+                            <h3 data-t="uso.paso3_t">Click the note for mini mode</h3>
+                            <p data-t="uso.paso3_p">
+                                The window shrinks and moves to a corner of
+                                the screen, so you can leave it there while
+                                you work. Click it again to get the full size
+                                back.
                             </p>
                         </div>
                     </article>
@@ -428,21 +450,20 @@
                         <img
                             class="demo-img demo-img-completo"
                             src="assets/reproductor-preview.png"
-                            alt="Digilogic a tamaño completo, mostrando la nota musical animada"
+                            alt="Digilogic at full size, showing the animated musical note"
                             loading="lazy"
                         >
 
                         <img
                             class="demo-img demo-img-mini"
                             src="assets/modo-compacto.png"
-                            alt="Digilogic en modo miniatura: una barra horizontal con la portada, el título y los controles"
+                            alt="Digilogic in mini mode: a horizontal bar with the artwork, the title and the controls"
                             loading="lazy"
                         >
 
                         <!-- Anillo que se expande en el punto del clic -->
                         <span class="demo-pulso" aria-hidden="true"></span>
 
-                        <!-- Puntero del ratón -->
                         <!-- Puntero con la silueta del de macOS: flecha
                              estrecha con cola, negra y con contorno blanco
                              (el contorno es lo que la hace visible sobre
@@ -455,7 +476,7 @@
 
                     </div>
 
-                    <figcaption>Un clic en la nota y se encoge. Otro, y vuelve.</figcaption>
+                    <figcaption data-t="uso.pie">One click on the note and it shrinks. Another, and it's back.</figcaption>
 
                 </figure>
 
@@ -471,17 +492,17 @@
         <section id="opinion" class="features opinion">
 
             <div class="section-heading reveal">
-                <p class="eyebrow">TU OPINIÓN</p>
+                <p class="eyebrow" data-t="opinion.eyebrow">FEEDBACK</p>
 
-                <h2>
-                    Cuéntame qué
-                    <span>cambiarías.</span>
+                <h2 data-t-html="opinion.titulo">
+                    Tell me what
+                    <span>you'd change.</span>
                 </h2>
 
-                <p>
-                    Digilogic se hace escuchando a quien lo usa. Todo se
-                    lee, y lo que entra se anuncia en las notas de cada
-                    versión con el nombre de quien lo propuso.
+                <p data-t="opinion.sub">
+                    Digilogic is built by listening to the people who use it.
+                    Everything gets read, and whatever makes it in is credited
+                    in the release notes.
                 </p>
             </div>
 
@@ -498,14 +519,14 @@
                         ✕
                     </div>
 
-                    <h3>Algo no funciona</h3>
+                    <h3 data-t="opinion.o1_t">Something's broken</h3>
 
-                    <p>
-                        Cuéntame qué pasa y en qué sistema. Cuanto más
-                        concreto, antes se arregla.
+                    <p data-t="opinion.o1_p">
+                        Tell me what happens and on which system. The more
+                        specific, the sooner it's fixed.
                     </p>
 
-                    <span class="feature-link-cta">Reportar un fallo →</span>
+                    <span class="feature-link-cta" data-t="opinion.o1_cta">Report a bug →</span>
                 </a>
 
 
@@ -520,14 +541,14 @@
                         ✦
                     </div>
 
-                    <h3>Te falta algo</h3>
+                    <h3 data-t="opinion.o2_t">Something's missing</h3>
 
-                    <p>
-                        Una función, un ajuste, un detalle. Explica qué
-                        problema te resolvería.
+                    <p data-t="opinion.o2_p">
+                        A feature, a setting, a detail. Explain which problem
+                        it would solve for you.
                     </p>
 
-                    <span class="feature-link-cta">Proponer una idea →</span>
+                    <span class="feature-link-cta" data-t="opinion.o2_cta">Suggest an idea →</span>
                 </a>
 
 
@@ -542,14 +563,13 @@
                         ♪
                     </div>
 
-                    <h3>Solo quieres hablar</h3>
+                    <h3 data-t="opinion.o3_t">You just want to talk</h3>
 
-                    <p>
-                        Dudas, opiniones o contar cómo lo usas. Sin
-                        formularios.
+                    <p data-t="opinion.o3_p">
+                        Questions, opinions, or how you use it. No forms.
                     </p>
 
-                    <span class="feature-link-cta">Abrir una conversación →</span>
+                    <span class="feature-link-cta" data-t="opinion.o3_cta">Start a conversation →</span>
                 </a>
 
             </div>
@@ -564,14 +584,14 @@
 
                 <span class="cta-icon">☕</span>
 
-                <h2>
-                    ¿Te está gustando Digilogic?
+                <h2 data-t="cta.titulo">
+                    Enjoying Digilogic?
                 </h2>
 
-                <p>
-                    Digilogic es gratis y de código abierto, y lo seguirá
-                    siendo. Si te resulta útil, puedes apoyarlo con un
-                    café. Lo recaudado va, por este orden, a:
+                <p data-t="cta.parrafo">
+                    Digilogic is free and open source, and it will stay that
+                    way. If you find it useful, you can support it with a
+                    coffee. What comes in goes, in this order, to:
                 </p>
 
                 <!-- Objetivos con su coste real: pedir dinero "para el
@@ -579,31 +599,31 @@
                      desbloquea cada cantidad. -->
                 <ol class="objetivos">
                     <li>
-                        <span class="objetivo-coste">19 $</span>
+                        <span class="objetivo-coste">$19</span>
                         <span class="objetivo-texto">
-                            <strong>Microsoft Store</strong>
-                            Instalar en Windows sin el aviso de SmartScreen.
+                            <strong data-t="cta.o1_t">Microsoft Store</strong>
+                            <span data-t="cta.o1_p">Install on Windows without the SmartScreen warning.</span>
                         </span>
                     </li>
                     <li>
-                        <span class="objetivo-coste">10 $/mes</span>
+                        <span class="objetivo-coste">$10/mo</span>
                         <span class="objetivo-texto">
-                            <strong>Firma en Windows</strong>
-                            Que el .exe descargado abra sin avisos.
+                            <strong data-t="cta.o2_t">Windows code signing</strong>
+                            <span data-t="cta.o2_p">So the downloaded .exe opens with no warnings.</span>
                         </span>
                     </li>
                     <li>
-                        <span class="objetivo-coste">99 $/año</span>
+                        <span class="objetivo-coste">$99/yr</span>
                         <span class="objetivo-texto">
-                            <strong>Apple Developer</strong>
-                            Mac sin avisos y, más adelante, versión para iPhone.
+                            <strong data-t="cta.o3_t">Apple Developer</strong>
+                            <span data-t="cta.o3_p">Mac without warnings and, later on, an iPhone version.</span>
                         </span>
                     </li>
                     <li>
-                        <span class="objetivo-coste">25 $</span>
+                        <span class="objetivo-coste">$25</span>
                         <span class="objetivo-texto">
-                            <strong>Google Play</strong>
-                            Versión para Android.
+                            <strong data-t="cta.o4_t">Google Play</strong>
+                            <span data-t="cta.o4_p">An Android version.</span>
                         </span>
                     </li>
                 </ol>
@@ -614,7 +634,7 @@
                     rel="noopener noreferrer"
                     class="button button-primary"
                 >
-                    ☕ Apóyame en Ko-fi
+                    <span data-t="cta.boton">☕ Support me on Ko-fi</span>
                 </a>
 
             </div>
@@ -634,8 +654,8 @@
                 <span>Digilogic</span>
             </div>
 
-            <p>
-                Hecho con ♥ en España
+            <p data-t="footer.hecho">
+                Made with ♥ in Spain
             </p>
 
             <p>
@@ -647,7 +667,9 @@
     </footer>
 
 
-    <script src="script.js?v=4"></script>
+    <!-- textos.js va primero: define la tabla que script.js aplica. -->
+    <script src="textos.js?v=1"></script>
+    <script src="script.js?v=6"></script>
 
 </body>
 </html>

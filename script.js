@@ -1,3 +1,116 @@
+// ------------------------------------------------------------------
+// Idioma de la página
+// ------------------------------------------------------------------
+//
+// El HTML viene en inglés y aquí se cambia a español si toca. Ese orden
+// no es casual: los buscadores no ejecutan JavaScript al indexar, así
+// que lo que ven es el inglés, que es donde está el público de
+// Digilogic. El español se aplica en el navegador de quien lo necesita.
+//
+// Tres cosas deciden el idioma, en este orden:
+//
+//   1. ?lang=es en la dirección, para poder compartir un enlace que
+//      abra en un idioma concreto.
+//   2. Lo que el visitante eligió a mano la última vez.
+//   3. El idioma del navegador.
+//
+// El interruptor EN/ES de la barra no compite con la detección: es su
+// red de seguridad, para quien tiene el navegador en un idioma que no
+// es el que quiere leer.
+
+const CLAVE_IDIOMA = "digilogic-idioma";
+
+function idiomaInicial() {
+    const pedido = new URLSearchParams(location.search).get("lang");
+    if (pedido === "es" || pedido === "en") {
+        return pedido;
+    }
+
+    // localStorage falla en ventanas privadas de algunos navegadores y
+    // con las cookies bloqueadas. No es motivo para dejar la página sin
+    // traducir, así que se ignora y se pasa al idioma del navegador.
+    try {
+        const guardado = localStorage.getItem(CLAVE_IDIOMA);
+        if (guardado === "es" || guardado === "en") {
+            return guardado;
+        }
+    } catch (error) {
+        // Sin memoria: se decide por el navegador en cada visita.
+    }
+
+    const preferidos = navigator.languages || [navigator.language || "en"];
+    return preferidos.some((etiqueta) =>
+        etiqueta.toLowerCase().startsWith("es")) ? "es" : "en";
+}
+
+function aplicarIdioma(idioma) {
+    // El inglés es lo que ya está escrito en el HTML. Para volver a él
+    // se recarga en vez de mantener una segunda tabla de textos: así
+    // solo hay un sitio donde está el inglés y no pueden desincronizarse.
+    if (idioma === "en" && document.documentElement.lang === "es") {
+        location.reload();
+        return;
+    }
+
+    if (idioma === "es" && typeof TEXTOS_ES !== "undefined") {
+        document.querySelectorAll("[data-t]").forEach((elemento) => {
+            const texto = TEXTOS_ES[elemento.dataset.t];
+            if (texto !== undefined) {
+                elemento.textContent = texto;
+            }
+        });
+
+        document.querySelectorAll("[data-t-html]").forEach((elemento) => {
+            const texto = TEXTOS_ES[elemento.dataset.tHtml];
+            if (texto !== undefined) {
+                elemento.innerHTML = texto;
+            }
+        });
+
+        document.title = TEXTOS_ES["meta.titulo"];
+        const descripcion = document.querySelector('meta[name="description"]');
+        if (descripcion) {
+            descripcion.setAttribute("content", TEXTOS_ES["meta.descripcion"]);
+        }
+    }
+
+    document.documentElement.lang = idioma;
+
+    document.querySelectorAll(".idiomas button").forEach((boton) => {
+        boton.classList.toggle("activo", boton.dataset.idioma === idioma);
+    });
+}
+
+const idiomaActual = idiomaInicial();
+aplicarIdioma(idiomaActual);
+
+document.querySelectorAll(".idiomas button").forEach((boton) => {
+    boton.addEventListener("click", () => {
+        const elegido = boton.dataset.idioma;
+        if (elegido === document.documentElement.lang) {
+            return;
+        }
+        try {
+            localStorage.setItem(CLAVE_IDIOMA, elegido);
+        } catch (error) {
+            // Sin memoria no pasa nada: el cambio se aplica igualmente,
+            // solo que no se recuerda para la próxima visita.
+        }
+
+        // Si se llegó con ?lang= en la dirección, hay que quitarlo: manda
+        // sobre lo elegido a mano, y volver al inglés recarga la página,
+        // que lo leería otra vez y desharía el clic.
+        if (new URLSearchParams(location.search).has("lang")) {
+            const url = new URL(location.href);
+            url.searchParams.delete("lang");
+            history.replaceState(null, "", url);
+        }
+
+        aplicarIdioma(elegido);
+    });
+});
+
+
 // Current year in footer
 
 document.getElementById("year").textContent =
