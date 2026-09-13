@@ -166,6 +166,63 @@ a {
 }
 
 
+/* Interruptor de idioma: dos palabras de tres letras, del mismo tamaño
+   que los enlaces de al lado. Deliberadamente discreto — la mayoría
+   nunca lo va a tocar porque la detección automática ya habrá acertado;
+   está para el que no. */
+.idiomas {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #5d616b;
+}
+
+
+/* Un punto más pequeño que el texto y algo apagado: acompaña al
+   interruptor, no compite con él. */
+.idiomas-globo {
+    font-size: 12px;
+
+    opacity: .75;
+
+    margin-right: 1px;
+}
+
+
+.idiomas button {
+    padding: 0;
+
+    border: none;
+    background: none;
+
+    color: var(--muted);
+
+    font: inherit;
+    font-size: 13px;
+    letter-spacing: .02em;
+
+    cursor: pointer;
+
+    transition: color .2s ease;
+}
+
+
+.idiomas button:hover {
+    color: white;
+}
+
+
+/* El idioma activo se marca en blanco; el otro queda apagado. Sin
+   recuadros ni subrayados: son dos palabras, no una pestaña. */
+.idiomas button.activo {
+    color: var(--text);
+    font-weight: 600;
+
+    cursor: default;
+}
+
+
 /* HERO */
 
 .hero {
