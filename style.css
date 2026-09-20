@@ -510,8 +510,23 @@ a {
     /* Difumina el propio contenedor hacia el fondo de la página en los
        bordes, en vez de recortar en seco -> las capturas laterales
        "se funden" con la web en vez de tener un borde duro. */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+    /* Y tambien arriba y abajo. Las capturas llevan una sombra de 100px
+       de difuminado que se sale del contenedor, y el 'overflow: hidden'
+       de abajo la cortaba en seco: en pantallas pequenas se veia una
+       linea recta cruzando el carrusel por arriba y por abajo. Con el
+       degradado vertical la sombra se apaga antes de llegar al borde,
+       asi que el recorte cae donde ya no hay nada que cortar. El 5% es
+       lo que cabe sin morder la tarjeta central, que en movil deja solo
+       17px de margen. */
+    -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-composite: source-in;
+
+    mask-image:
+        linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-composite: intersect;
 
     overflow: hidden;
 
@@ -895,14 +910,16 @@ footer {
 
 
 .footer-social svg {
-    width: 18px;
-    height: 18px;
+    /* Los mismos 30px que '.logo-image', el logo del otro extremo del
+       pie: los dos extremos pesan igual. */
+    width: 30px;
+    height: 30px;
 
     fill: none;
 
     stroke: currentColor;
 
-    stroke-width: 1.6;
+    stroke-width: 1.5;
 
     stroke-linecap: round;
 
